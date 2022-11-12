@@ -10,16 +10,14 @@
 // les
 // gars
 
-
 let args = process.argv.slice(2);
-if(args.length === 0) {
-    console.log('error');
-    return;
+if (args.length === 0) {
+  console.log("error");
+  return;
 }
 
 let str = args.toString();
 // let space = /\s*,+\s*/g;
-
 
 // console.log(sp);
 // separateur virgule
@@ -28,13 +26,16 @@ let spaceStr = str.replace(reg, " ");
 // let stringSize = spaceStr.length;
 
 // position index space
-
-let char = ' ';
+let char = " ";
 // retrouve tous les ID des espaces
 const getIdofChar = (str, char) => {
-    let tmpArr = [...str];
-    char = char.toLowerCase();
-    return tmpArr.reduce((results, elem, idx) => elem.toLowerCase() === char ? [...results, idx] : results, [] );
+  let tmpArr = [...str];
+  char = char.toLowerCase();
+  return tmpArr.reduce(
+    (results, elem, idx) =>
+      elem.toLowerCase() === char ? [...results, idx] : results,
+    []
+  );
 };
 let results = getIdofChar(spaceStr, char);
 
@@ -42,24 +43,24 @@ let results = getIdofChar(spaceStr, char);
 let lineFeed = args.length;
 
 const splitString = (str) => {
-    let resultArray = [];
-    let tempString = '';
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] !== ' ') {
-        tempString += str[i];
-      } else if (tempString.trim()) {
-        //minor change
-        resultArray.push(tempString);
-        tempString = '';
-      }
-    }
-    if (tempString) {
-      //new step
+  let resultArray = [];
+  let tempString = "";
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== " ") {
+      tempString += str[i];
+    } else if (tempString.trim()) {
+      //minor change
       resultArray.push(tempString);
+      tempString = "";
     }
-    return resultArray.toString();
-  };
+  }
+  if (tempString) {
+    //new step
+    resultArray.push(tempString);
+  }
+  return resultArray.toString();
+};
 
-for(let i=0; i< lineFeed; i++){
-    console.log(splitString(args[i]))
+for (let i = 0; i < lineFeed; i++) {
+  console.log(splitString(args[i]));
 }
