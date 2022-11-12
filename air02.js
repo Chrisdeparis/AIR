@@ -17,7 +17,7 @@ if (
   arg === "" 
   
 ) {
-  console.log("error param");
+  console.log("error");
   return;
 } else {
   let str = arg.toString();
