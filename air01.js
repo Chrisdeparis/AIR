@@ -1,66 +1,62 @@
-// Créez un programme qui découpe une chaîne de caractères en tableau (séparateurs : espaces, tabulations, retours à la ligne).
-// Votre programme devra utiliser une fonction prototypée comme ceci :
-// ma_fonction(string_à_couper, string_séparateur) { // syntaxe selon votre langage
-// 	# votre algorithme
-// 	return (tableau)
-// }
-// Exemples d’utilisation :
-// $> python exo.py “Bonjour les gars”
-// Bonjour
-// les
-// gars
-
 let args = process.argv.slice(2);
-if (args.length === 0) {
-  console.log("error");
-  return;
-}
 
-let str = args.toString();
-// let space = /\s*,+\s*/g;
+function ma_fonction(string_a_couper, string_separateur) {
+  // On vérifie que les deux arguments ne sont pas null
+  if (string_a_couper === null || string_separateur === null) {
+    console.log("Error: les deux arguments ne doivent pas être null");
+    return;
+  }
 
-// console.log(sp);
-// separateur virgule
-let reg = /\,/g;
-let spaceStr = str.replace(reg, " ");
-// let stringSize = spaceStr.length;
+  // On vérifie que les deux arguments sont bien des chaînes de caractères
+  if (
+    typeof string_a_couper !== "string" ||
+    typeof string_separateur !== "string"
+  ) {
+    console.log(
+      "Error: les deux arguments doivent être des chaînes de caractères"
+    );
+    return;
+  }
 
-// position index space
-let char = " ";
-// retrouve tous les ID des espaces
-const getIdofChar = (str, char) => {
-  let tmpArr = [...str];
-  char = char.toLowerCase();
-  return tmpArr.reduce(
-    (results, elem, idx) =>
-      elem.toLowerCase() === char ? [...results, idx] : results,
-    []
-  );
-};
-let results = getIdofChar(spaceStr, char);
+  // Le reste de votre code ici...
+  // On initialise le tableau qui contiendra les morceaux de la chaîne
+  const tableau = [];
 
-// nbre de saut de ligne
-let lineFeed = args.length;
+  // On initialise une variable qui contiendra le morceau de chaîne en cours de traitement
+  let morceau = "";
 
-const splitString = (str) => {
-  let resultArray = [];
-  let tempString = "";
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] !== " ") {
-      tempString += str[i];
-    } else if (tempString.trim()) {
-      //minor change
-      resultArray.push(tempString);
-      tempString = "";
+  // On parcourt la chaîne de caractères
+  for (let i = 0; i < string_a_couper.length; i++) {
+    // Si le caractère courant est un séparateur, on ajoute le morceau de chaîne
+    // précédemment construit au tableau et on réinitialise la variable morceau
+    if (string_separateur.includes(string_a_couper[i])) {
+      tableau.push(morceau);
+      morceau = "";
+    }
+    // Sinon, on ajoute le caractère courant au morceau de chaîne en cours de traitement
+    else {
+      morceau += string_a_couper[i];
     }
   }
-  if (tempString) {
-    //new step
-    resultArray.push(tempString);
-  }
-  return resultArray.toString();
-};
 
-for (let i = 0; i < lineFeed; i++) {
-  console.log(splitString(args[i]));
+  // On ajoute le dernier morceau de chaîne au tableau (s'il existe)
+  if (morceau) {
+    tableau.push(morceau);
+  }
+
+  // On retourne le tableau
+  return tableau.join("\n");
+}
+
+// On récupère les arguments passés au programme
+const string_a_couper = process.argv.slice(2)[0];
+const string_separateur = " ";
+
+// On appelle la fonction en utilisant les arguments récupérés
+// On vérifie si le premier argument existe
+if (string_a_couper) {
+  // On appelle la fonction en utilisant les arguments récupérés
+  console.log(ma_fonction(string_a_couper, string_separateur));
+} else {
+  console.log("Error: le premier argument est manquant");
 }
