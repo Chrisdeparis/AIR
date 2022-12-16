@@ -37,6 +37,7 @@ function ma_fonction(string_a_couper, string_separateur) {
     else {
       morceau += string_a_couper[i];
     }
+    current += ch;
   }
 
   // On ajoute le dernier morceau de chaîne au tableau (s'il existe)
@@ -60,3 +61,4 @@ if (string_a_couper) {
 } else {
   console.log("Error: le premier argument est manquant");
 }
+
