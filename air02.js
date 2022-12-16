@@ -4,43 +4,68 @@
 // 	# votre algorithme
 // 	return (tableau)
 // }
-let args = process.argv.slice(2);
-
-<<<<<<< HEAD
-=======
-function my_split(sentence, separator) {
-  return sentence.split(separator);
-}
-
-
-const errorMessage = new Error('error');
-
-function areThereExactlyTwoArguments(args) {
-  return args.length == 2;
-}
-
-
-function checkArgumentForError(args) {
-  let testResult = 1;
-  if (!areThereExactlyTwoArguments(args)) {
-    //1.a if not exatly two arguments are passed
-    testResult = errorMessage;
+function ma_fonction(string_a_couper, string_separateur) {
+  // On vérifie que les deux arguments sont bien des chaînes de caractères
+  if (typeof string_a_couper !== 'string' || typeof string_separateur !== 'string') {
+    console.log("Error: les deux arguments doivent être des chaînes de caractères");
+    return;
   }
-  return testResult;
+
+  // On vérifie que string_a_couper existe
+  if (string_a_couper === null || string_a_couper === undefined) {
+    console.log("Error: string_a_couper est null ou undefined");
+    return;
+  }
+
+  // On initialise le tableau qui contiendra les morceaux de la chaîne
+  const tableau = [];
+
+  // On initialise une variable qui contiendra le morceau de chaîne en cours de traitement
+  let morceau = "";
+
+  // On parcourt la chaîne de caractères
+  for (let i = 0; i < string_a_couper.length; i++) {
+    // Si le caractère courant est le premier caractère du séparateur, on vérifie
+    // si le séparateur suivant est bien présent à cet emplacement dans la chaîne
+    if (string_a_couper[i] === string_separateur[0]) {
+      let separateur_trouve = true;
+      for (let j = 1; j < string_separateur.length; j++) {
+        if (string_a_couper[i + j] !== string_separateur[j]) {
+          separateur_trouve = false;
+          break;
+        }
+      }
+      if (separateur_trouve) {
+        tableau.push(morceau);
+        morceau = "";
+        i += string_separateur.length - 1;
+      } else {
+        morceau += string_a_couper[i];
+      }
+    }
+    // Sinon, on ajoute le caractère courant au morceau de chaîne en cours de traitement
+    else {
+      morceau += string_a_couper[i];
+    }
+  }
+
+  // On ajoute le dernier morceau de chaîne au tableau (s'il existe)
+  if (morceau) {
+    tableau.push(morceau);
+  }
+
+  // On retourne le tableau
+  return tableau.join('\n');
 }
 
-// let args = process.argv.slice(2);
-// console.log(args.length);
-let checkResult = checkArgumentForError(args);
-let result = 'error';
+// On récupère les arguments passés au programme
+const string_a_couper = process.argv.slice(2)[0];
+const string_separateur = process.argv.slice(2)[1];
 
-
-if (checkResult !== 1) {
-  result = checkResult.message;
+// Affiche: ['Crevette magique dans ', ' mer des étoiles']
+if(string_a_couper === null || string_a_couper === undefined){
+  console.error("Error: les deux arguments doivent être des chaînes de caractères");
 } else {
-  result = my_split(args[0], args[1]).join('\n');
+// Exemple d'utilisation
+console.log(ma_fonction(string_a_couper, string_separateur));
 }
-
-
-console.log(result);
->>>>>>> b1985fc6aa37a8a50b81564c53c2a3a727314e03

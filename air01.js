@@ -1,4 +1,9 @@
-let args = process.argv.slice(2);
+// Exemples d’utilisation :
+// $> python exo.py “Bonjour les gars”
+// Bonjour
+// les
+// gars
+
 
 function ma_fonction(string_a_couper, string_separateur) {
   // On vérifie que les deux arguments ne sont pas null
@@ -18,7 +23,6 @@ function ma_fonction(string_a_couper, string_separateur) {
     return;
   }
 
-  // Le reste de votre code ici...
   // On initialise le tableau qui contiendra les morceaux de la chaîne
   const tableau = [];
 
@@ -37,7 +41,6 @@ function ma_fonction(string_a_couper, string_separateur) {
     else {
       morceau += string_a_couper[i];
     }
-    current += ch;
   }
 
   // On ajoute le dernier morceau de chaîne au tableau (s'il existe)
@@ -46,7 +49,7 @@ function ma_fonction(string_a_couper, string_separateur) {
   }
 
   // On retourne le tableau
-  return tableau.join("\n");
+  return tableau.join('\n');
 }
 
 // On récupère les arguments passés au programme
