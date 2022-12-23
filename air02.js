@@ -62,7 +62,7 @@ function ma_fonction(string_a_couper, string_separateur) {
 const string_a_couper = process.argv.slice(2)[0];
 const string_separateur = process.argv.slice(2)[1];
 
-// Affiche: ['Crevette magique dans ', ' mer des étoiles']
+// Affiche: les arguments tronqués
 if(string_a_couper === null || string_a_couper === undefined){
   console.error("Error: les deux arguments doivent être des chaînes de caractères");
 } else {

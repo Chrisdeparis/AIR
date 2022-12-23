@@ -1,28 +1,23 @@
-const args = process.argv.slice(2);
+// Récupération de l'opération et de la valeur à utiliser
+const operation = process.argv[process.argv.length - 1].slice(0, 1);
+const value = Number(process.argv[process.argv.length - 1].slice(1));
 
-// Vérifiez s'il y a au moins deux arguments (la liste et l'opération)
-if (args.length < 2) {
-  console.error('Error: Veuillez fournir une liste et une opération');
-  process.exit(1);
-}
-
-// Récupérez l'opération en utilisant la méthode pop() sur le tableau d'arguments
-const operation = args.pop();
-
-// Vérifiez si l'opération est valide (soit '+' ou '-')
 if (operation !== '+' && operation !== '-') {
-  console.error('Error: L\'opération doit être + ou -');
+  console.error('Error: invalid operation');
   process.exit(1);
 }
 
-// Convertissez les arguments restants en nombres à l'aide de la méthode map()
-const numbers = args.map(Number);
+// Récupération de la liste des nombres
+const numbers = process.argv.slice(2, -1).map(Number);
 
-// Effectuez l'opération sur chaque nombre à l'aide de la méthode forEach()
-numbers.forEach(number => {
+// Application de l'opération sur chaque nombre de la liste
+for (let i = 0; i < numbers.length; i++) {
   if (operation === '+') {
-    console.log(number + 2);
-  } else if (operation === '-') {
-    console.log(number - 5);
+    numbers[i] += value;
+  } else {
+    numbers[i] -= value;
   }
-});
+}
+
+// Affichage du résultat
+console.log(numbers.join(' '));
