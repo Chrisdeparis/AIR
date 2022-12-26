@@ -11,7 +11,7 @@ const air07 = require("./air07");
 const air08 = require("./air08");
 const air09 = require("./air09");
 const air10 = require("./air10");
-// const air11 = require("./air11");
+const air11 = require("./air11");
 // const air12 = require("./air12");
 // const air13 = require("./air13");
 
@@ -141,16 +141,15 @@ function runTests() {
             // console.log(expected);
             tested = true;
             if (result === expected) {
-              
             }
             break;
           }
-          
+
         case "air09.js":
           // Test code for air03.js goes here
           // $> node exo.js 10 20 30 fusion 15 25 35
           // 10 15 20 25 30 35
-          var liste9 = ["10","20","30","fusion","15","25","35"];
+          var liste9 = ["10", "20", "30", "fusion", "15", "25", "35"];
           var array1 = liste9.slice(0, liste9.indexOf("fusion"));
           var array2 = liste9.slice(liste9.indexOf("fusion") + 1);
           var result, expected;
@@ -161,30 +160,36 @@ function runTests() {
           }
           break;
         case "air10.js":
-          // Test code for air03.js goes here
-          var array = ["Michel", "Albert", 'Thérese', "Benoit"];
+          // Test code for air10.js goes here
+          var array = ["Michel", "Albert", "Thérese", "Benoit"];
           var result, expected;
           result = air10.ma_rotation(array);
-          expected = ["Albert", "Thérese", "Benoit", "Michel"].join(', ');
+          expected = ["Albert", "Thérese", "Benoit", "Michel"].join(", ");
           if (result === expected) {
             tested = true;
           }
           break;
-        // case "air11.js":
-        //   // Test code for air03.js goes here
-        //   // node air11.js a.txt
-        //   // j'aime la guitare, le cinéma et la blockchain
-        //   var filename = "a.txt";
-        //   var result, expected;
-        //   result = air11.readFile(filename);
-        //   expected = "5";
-        //   if (result === expected) {
-        //     tested = true;
-        //   }
-        //   break;
+        case "air11.js":
+          // Test code for air11.js goes here
+          // node air11.js a.txt
+          // j'aime la guitare, le cinéma et la blockchain
+          var filename = "a.txt";
+          var expected;
+          result = air11.readFile(filename);
+          // var { readFile } = require("./air11");
+          // var result = readFile(filename);
+          // console.log(result);
+          console.log("result :" + result);
+          expected = "j'aime la guitare, le cinéma et la blockchain";
+          console.log("expected : " + expected);
+          tested = true;
+          if (result === expected) {
+            
+          }
+          break;
         // case "air12.js":
         //   // Test code for air03.js goes here
-          
+
         //   var character = "0";
         //   var height = 5;
         //   var result, expected;
@@ -194,7 +199,7 @@ function runTests() {
         //   console.log(expected);
         //   tested = true;
         //   if (result === expected) {
-            
+
         //   }
         //   break;
         // case "air13.js":
