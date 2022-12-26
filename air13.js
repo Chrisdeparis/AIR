@@ -58,15 +58,8 @@ function my_quick_sort(array) {
   const sortedArray = my_quick_sort(numbers).join(' ');
   console.log( sortedArray);
 
-  exports.tests = [
-    function() {
-      // Code du test 1
-      return true; // ou false si le test échoue
-    },
-    function() {
-      // Code du test 2
-      return true; // ou false si le test échoue
-    },
-    // etc.
-  ];
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "my_quick_sort": my_quick_sort,
+};
   

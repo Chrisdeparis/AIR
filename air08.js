@@ -1,6 +1,7 @@
 // Exemples d’utilisation :
 // $> node exo.js 1 3 4 2
 // 1 2 3 4
+const path = require("path");
 
 const sorted_insert = (array, new_element) => {
     // Vérifier que la liste n'est pas vide
@@ -29,21 +30,16 @@ const sorted_insert = (array, new_element) => {
   // Récupérer les arguments passés en ligne de commande
   const array = process.argv.slice(2, -1).map(Number);
   const new_element = Number(process.argv[process.argv.length - 1]);
-  
+  const filename = path.basename(process.argv[1]);
+
   // Afficher le résultat ou un message d'erreur
-  console.log(array.length > 0 && new_element !== undefined && new_element !== null
-    ? sorted_insert(array, new_element)
-    : "Erreur : veuillez fournir une liste et un élément à insérer");
+  if(filename !== 'air14.js') {  
+    console.log(array.length > 0 && new_element !== undefined && new_element !== null
+      ? sorted_insert(array, new_element)
+      : "Erreur : veuillez fournir une liste et un élément à insérer");
+  }
   
-  
-    exports.tests = [
-        function() {
-          // Code du test 1
-          return true; // ou false si le test échoue
-        },
-        function() {
-          // Code du test 2
-          return true; // ou false si le test échoue
-        },
-        // etc.
-      ];
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "sorted_insert": sorted_insert,
+};

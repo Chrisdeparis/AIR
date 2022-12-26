@@ -2,7 +2,7 @@
 // $> python exo.py “Michel” “Albert” “Thérèse” “Benoit”
 // Albert, Thérèse, Benoit, Michel
 
-
+const path = require("path");
 function ma_rotation(array) {
     if (!array || array.length === 0) {
       console.error("Erreur : tableau vide ou non défini");
@@ -23,18 +23,15 @@ if (!array || array.length === 0) {
   console.error("Erreur : aucun argument en ligne de commande");
   process.exit(1);
 }
+const filename = path.basename(process.argv[1]);
 
-let new_array = ma_rotation(array);
-console.log(new_array);
+if(filename !== 'air14.js'){
+  let new_array = ma_rotation(array);
+  console.log(new_array);
+}
 
-exports.tests = [
-    function() {
-      // Code du test 1
-      return true; // ou false si le test échoue
-    },
-    function() {
-      // Code du test 2
-      return true; // ou false si le test échoue
-    },
-    // etc.
-  ];
+
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "ma_rotation": ma_rotation,
+};

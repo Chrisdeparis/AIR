@@ -7,6 +7,21 @@
 
 const fs = require('fs');
 
+function readFile(fileName) {
+  // Lisez le fichier
+  fs.readFile(fileName, 'utf8', (err, data) => {
+    // Affichez une erreur si le fichier est inaccessible ou s'il y a une erreur autre
+    if (err) {
+      console.error(`Erreur : impossible d'accéder au fichier ${fileName}`);
+      process.exit(1);
+    }
+
+    // Affichez le contenu du fichier
+    console.log(data);
+  });
+}
+
+// Example usage:
 // Vérifiez si le nombre d'arguments est correct
 if (process.argv.length !== 3) {
   console.error('Erreur : nombre incorrect d\'arguments');
@@ -15,27 +30,9 @@ if (process.argv.length !== 3) {
 
 // Récupérez le nom du fichier à partir des arguments
 const fileName = process.argv[2];
+readFile(fileName);
 
-// Lisez le fichier
-fs.readFile(fileName, 'utf8', (err, data) => {
-  // Affichez une erreur si le fichier est inaccessible ou s'il y a une erreur autre
-  if (err) {
-    console.error(`Erreur : impossible d'accéder au fichier ${fileName}`);
-    process.exit(1);
-  }
-
-  // Affichez le contenu du fichier
-  console.log(data);
-});
-
-exports.tests = [
-    function() {
-      // Code du test 1
-      return true; // ou false si le test échoue
-    },
-    function() {
-      // Code du test 2
-      return true; // ou false si le test échoue
-    },
-    // etc.
-  ];
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "readFile": readFile,
+};

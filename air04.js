@@ -1,3 +1,13 @@
+// Exemples d’utilisation :
+// $> python exo.py 1 2 3 4 5 4 3 2 1
+// 5
+
+// $> python exo.py bonjour monsieur bonjour
+// monsieur
+
+
+const path = require("path");
+
 function trouverValeurImpaire(liste) {
   // On vérifie que la liste est bien un tableau
   if (!Array.isArray(liste)) {
@@ -31,22 +41,18 @@ const liste = process.argv.slice(2);
 
 // On appelle la fonction
 const resultat = trouverValeurImpaire(liste);
-
+const filename = path.basename(process.argv[1]);
 // On affiche le résultat
-if (resultat === null) {
-  console.log("Aucune valeur n'a été trouvée");
-} else {
-  console.log(resultat);
+if(filename !== 'air14.js'){
+  if (resultat === null) {
+    console.log("Aucune valeur n'a été trouvée");
+  } else {
+    console.log(resultat);
+  }
 }
 
-exports.tests = [
-  function() {
-    // Code du test 1
-    return true; // ou false si le test échoue
-  },
-  function() {
-    // Code du test 2
-    return true; // ou false si le test échoue
-  },
-  // etc.
-];
+
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "trouverValeurImpaire": trouverValeurImpaire,
+};

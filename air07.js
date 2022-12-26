@@ -4,7 +4,7 @@
 
 // $> python exo.py “Michel” “Albert” “Thérèse” “Benoit” “a”
 // Michel, Thérèse, Benoit
-
+const path = require("path");
 
 function ma_fonction(array_de_strings, string) {
   // Vérifier si array_de_strings est bien un tableau de chaînes de caractères
@@ -28,27 +28,23 @@ function ma_fonction(array_de_strings, string) {
 // Lire les arguments passés en ligne de commande
 const array_de_strings = process.argv.slice(2, -1);
 const string = process.argv[process.argv.length - 1];
-
+const filename = path.basename(process.argv[1]);
 // Appeler la fonction avec les arguments lus en ligne de commande
 const resultat = ma_fonction(array_de_strings, string);
 
 
 // Vérifier si tous les arguments nécessaires ont été fournis
-if (array_de_strings.length === 0 || !string) {
-  console.error('Il manque des arguments');
-  process.exit(1); // Quitter le programme avec une erreur
-} else {
-  console.log(resultat);
+if( filename !== 'air14.js') {
+  if (array_de_strings.length === 0 || !string) {
+    console.error('Il manque des arguments');
+    process.exit(1); // Quitter le programme avec une erreur
+  } else {
+    console.log(resultat);
+  }
+  
 }
 
-exports.tests = [
-  function() {
-    // Code du test 1
-    return true; // ou false si le test échoue
-  },
-  function() {
-    // Code du test 2
-    return true; // ou false si le test échoue
-  },
-  // etc.
-];
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "ma_fonction": ma_fonction,
+};

@@ -1,6 +1,7 @@
 // Exemples d’utilisation :
 // $> node exo.js 10 20 30 fusion 15 25 35
 // 10 15 20 25 30 35
+const path = require("path");
 
 function sorted_fusion(array1, array2) {
     // Vérifiez si les deux tableaux sont vides
@@ -48,24 +49,21 @@ function sorted_fusion(array1, array2) {
 
 const array1 = process.argv.slice(2, process.argv.indexOf("fusion"));
 const array2 = process.argv.slice(process.argv.indexOf("fusion") + 1);
+const filename = path.basename(process.argv[1]);
 
 // Vérifiez si les tableaux sont vides
-if (array1.length === 0 || array2.length === 0) {
+if(filename !== 'air14.js') {
+  if (array1.length === 0 || array2.length === 0) {
     console.error("Error: Invalid arguments");
     process.exit(1);
   }
+  console.log(sorted_fusion(array1, array2));
+}
 
-console.log(sorted_fusion(array1, array2));
 
-exports.tests = [
-    function() {
-      // Code du test 1
-      return true; // ou false si le test échoue
-    },
-    function() {
-      // Code du test 2
-      return true; // ou false si le test échoue
-    },
-    // etc.
-  ];
-  
+
+
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "sorted_fusion": sorted_fusion,
+};
