@@ -33,3 +33,14 @@ function retirerCaracteresAdjacents(chaine) {
   // On affiche le résultat
   console.log(resultat);
   
+  exports.tests = [
+    function() {
+      // Code du test 1
+      return true; // ou false si le test échoue
+    },
+    function() {
+      // Code du test 2
+      return true; // ou false si le test échoue
+    },
+    // etc.
+  ];

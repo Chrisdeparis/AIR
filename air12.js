@@ -27,3 +27,15 @@ for (let i = 1; i <= height; i++) {
   const padding = " ".repeat(paddingLength); // génère les espaces vides
   console.log(padding + line + padding); // imprime l'escalier ligne par ligne
 }
+
+exports.tests = [
+    function() {
+      // Code du test 1
+      return true; // ou false si le test échoue
+    },
+    function() {
+      // Code du test 2
+      return true; // ou false si le test échoue
+    },
+    // etc.
+  ];

@@ -4,6 +4,9 @@
 // 	# votre algorithme
 // 	return (tableau)
 // }
+
+const path = require("path");
+
 function ma_fonction(string_a_couper, string_separateur) {
   // On vérifie que les deux arguments sont bien des chaînes de caractères
   if (typeof string_a_couper !== 'string' || typeof string_separateur !== 'string') {
@@ -61,11 +64,18 @@ function ma_fonction(string_a_couper, string_separateur) {
 // On récupère les arguments passés au programme
 const string_a_couper = process.argv.slice(2)[0];
 const string_separateur = process.argv.slice(2)[1];
+const filename = path.basename(process.argv[1]);
 
 // Affiche: les arguments tronqués
-if(string_a_couper === null || string_a_couper === undefined){
+if(string_a_couper === null || string_a_couper === undefined && filename === 'air02.js'){
   console.error("Error: les deux arguments doivent être des chaînes de caractères");
-} else {
+}
+if(string_a_couper) {
 // Exemple d'utilisation
 console.log(ma_fonction(string_a_couper, string_separateur));
 }
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "ma_fonction": ma_fonction,
+};
+

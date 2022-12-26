@@ -3,7 +3,7 @@
 // Bonjour
 // les
 // gars
-
+const path = require("path");
 
 function ma_fonction(string_a_couper, string_separateur) {
   // On vérifie que les deux arguments ne sont pas null
@@ -20,6 +20,11 @@ function ma_fonction(string_a_couper, string_separateur) {
     console.log(
       "Error: les deux arguments doivent être des chaînes de caractères"
     );
+    return;
+  }
+  // Si le premier argument n'est pas présent, affichez le message d'erreur et retournez
+  if (!string_a_couper) {
+    console.log("Error: le premier argument est manquant");
     return;
   }
 
@@ -55,13 +60,21 @@ function ma_fonction(string_a_couper, string_separateur) {
 // On récupère les arguments passés au programme
 const string_a_couper = process.argv.slice(2)[0];
 const string_separateur = " ";
+const filename = path.basename(process.argv[1]);
 
 // On appelle la fonction en utilisant les arguments récupérés
 // On vérifie si le premier argument existe
 if (string_a_couper) {
   // On appelle la fonction en utilisant les arguments récupérés
   console.log(ma_fonction(string_a_couper, string_separateur));
-} else {
+} 
+// error 
+if(string_a_couper === undefined && filename  === 'air01.js' ) {
   console.log("Error: le premier argument est manquant");
 }
 
+
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "ma_fonction": ma_fonction,
+};

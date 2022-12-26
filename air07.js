@@ -40,3 +40,15 @@ if (array_de_strings.length === 0 || !string) {
 } else {
   console.log(resultat);
 }
+
+exports.tests = [
+  function() {
+    // Code du test 1
+    return true; // ou false si le test échoue
+  },
+  function() {
+    // Code du test 2
+    return true; // ou false si le test échoue
+  },
+  // etc.
+];

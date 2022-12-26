@@ -26,3 +26,15 @@ if (!array || array.length === 0) {
 
 let new_array = ma_rotation(array);
 console.log(new_array);
+
+exports.tests = [
+    function() {
+      // Code du test 1
+      return true; // ou false si le test échoue
+    },
+    function() {
+      // Code du test 2
+      return true; // ou false si le test échoue
+    },
+    // etc.
+  ];

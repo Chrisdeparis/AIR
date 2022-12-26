@@ -36,4 +36,14 @@ const sorted_insert = (array, new_element) => {
     : "Erreur : veuillez fournir une liste et un élément à insérer");
   
   
-  
+    exports.tests = [
+        function() {
+          // Code du test 1
+          return true; // ou false si le test échoue
+        },
+        function() {
+          // Code du test 2
+          return true; // ou false si le test échoue
+        },
+        // etc.
+      ];

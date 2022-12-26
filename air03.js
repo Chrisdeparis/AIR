@@ -7,7 +7,7 @@
 // Exemples d’utilisation :
 // $> python exo.py “je” “teste” “des” “trucs” “ “
 // Je teste des trucs
-
+const path = require("path");
 function ma_fonction(array_de_strings, separateur) {
   // On vérifie que array_de_strings est bien un tableau
   if (!Array.isArray(array_de_strings)) {
@@ -43,12 +43,23 @@ function ma_fonction(array_de_strings, separateur) {
 // On récupère les arguments passés au programme
 const array_de_strings = process.argv.slice(2, -1);
 const separateur = process.argv.slice(-1)[0];
+const filename = path.basename(process.argv[1]);
 
+// console.log(!array_de_strings.length || !separateur || filename === 'air03.js');
 // On vérifie si aucun argument n'a été passé
-if (!array_de_strings.length || !separateur) {
-  console.log("Error: aucun argument n'a été passé au programme");
-  return;
+// empecher le message d'erreur si appel par air14.js
+if (filename !== 'air14.js'){
+  if (!array_de_strings.length || !separateur || filename === 'air03.js') {
+    console.log("Error: aucun argument n'a été passé au programme");
+    return;
+  }
 }
+
 
 // On appelle la fonction en utilisant les arguments récupérés
 console.log(ma_fonction(array_de_strings, separateur));
+
+//exporter la fonction pour exo air14.js
+module.exports = {
+  "ma_fonction": ma_fonction,
+};

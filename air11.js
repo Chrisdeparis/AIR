@@ -27,3 +27,15 @@ fs.readFile(fileName, 'utf8', (err, data) => {
   // Affichez le contenu du fichier
   console.log(data);
 });
+
+exports.tests = [
+    function() {
+      // Code du test 1
+      return true; // ou false si le test échoue
+    },
+    function() {
+      // Code du test 2
+      return true; // ou false si le test échoue
+    },
+    // etc.
+  ];
