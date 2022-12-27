@@ -12,8 +12,8 @@ const air08 = require("./air08");
 const air09 = require("./air09");
 const air10 = require("./air10");
 const air11 = require("./air11");
-// const air12 = require("./air12");
-// const air13 = require("./air13");
+const air12 = require("./air12");
+const air13 = require("./air13");
 
 // Liste des exercices de l'épreuve de l'air
 const exercices = [
@@ -174,8 +174,8 @@ function runTests() {
           // node air11.js a.txt
           // j'aime la guitare, le cinéma et la blockchain
           var filename = "a.txt";
-          var expected;
-          result = fs.readFile("a.txt", "utf8", (err, data) => {
+          var result, expected;
+          result = fs.readFile(filename, "utf8", (err, data) => {
             if (err) {
               console.error(err);
               return;
@@ -185,32 +185,54 @@ function runTests() {
           expected = "j'aime la guitare, le cinéma et la blockchain";
           tested = true;
           if (result === expected) {
-            
           }
           break;
-        // case "air12.js":
-        //   // Test code for air03.js goes here
+        case "air12.js":
+          // Test code for air03.js goes here
 
-        //   var character = "0";
-        //   var height = 5;
-        //   var result, expected;
-        //   result = air12.drawStaircase(character, height);
-        //   expected = "5";
-        //   console.log(result);
-        //   console.log(expected);
-        //   tested = true;
-        //   if (result === expected) {
+          var character = "0";
+          var height = 5;
+          var result, expected;
+          result = air12.drawStaircase(character, height);
+          expected = function drawStaircase(character, height) {
+            if (!character || !height) {
+              console.error(
+                "Vous devez fournir un caractère et une hauteur d'escalier"
+              );
+              process.exit(1); // quitte le programme avec un code d'erreur
+            }
 
-        //   }
-        //   break;
-        // case "air13.js":
-        //   // Test code for air03.js goes here
-        //   var array_de_strings = ["1", "2", "3", "4", "5", "4", "3", "2", "1"];
-        //   var result, expected;
-        //   result = air04.trouverValeurImpaire(array_de_strings);
-        //   expected = "5";
-        //   tested = true;
-        //   break;
+            const consoleWidth = process.stdout.columns; // récupère la largeur de la console en utilisant la propriété `columns` de l'objet `stdout` de `process`
+
+            for (let i = 1; i <= height; i++) {
+              const lineLength = i * 2 - 1; // calcule la longueur de la ligne en utilisant la formule i * 2 - 1 pour obtenir un nombre impair supérieur
+              const line = character.repeat(lineLength); // génère la ligne de l'escalier
+              const paddingLength = (consoleWidth - lineLength) / 2; // calcule le nombre d'espaces à ajouter avant et après la ligne pour la centrer
+              const padding = " ".repeat(paddingLength); // génère les espaces vides
+              // console.log(padding + line + padding); // imprime l'escalier ligne par ligne
+            }
+          };
+
+          // console.log(result);
+          // console.log(expected);
+          tested = true;
+          if (result === expected) {
+          }
+          break;
+        case "air13.js":
+          // $> python exo.py 6 5 4 3 2 1
+          // 1 2 3 4 5 6
+          // Test code for air03.js goes here
+          var array_de_strings = ["6","5","4","3","2","1"];
+          var result, expected;
+          result = air13.my_quick_sort(array_de_strings).join(' ');
+          expected = ["1","2","3","4","5","6"].join(' ');
+
+          if(result === expected){
+            tested = true;
+          }
+          
+          break;
       }
       if (tested) {
         try {

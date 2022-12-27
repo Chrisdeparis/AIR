@@ -1,7 +1,7 @@
 // Exemples d’utilisation :
 // $> python exo.py 6 5 4 3 2 1
 // 1 2 3 4 5 6
-
+const path = require("path");
 
 function my_quick_sort(array) {
     // Vérifiez que le tableau n'est pas vide
@@ -49,11 +49,14 @@ function my_quick_sort(array) {
     }
     return number;
   });
-
-  if (numbers.length === 0) {
-    console.error("error: Aucun argument reçu");
-    process.exit(1);
+  const filename = path.basename(process.argv[1]);
+  if(filename !== 'air14.js'){
+    if (numbers.length === 0) {
+      console.error("error: Aucun argument reçu");
+      process.exit(1);
+    }
   }
+  
 
   const sortedArray = my_quick_sort(numbers).join(' ');
   console.log( sortedArray);

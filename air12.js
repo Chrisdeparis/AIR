@@ -5,8 +5,7 @@
 //   OOOOO
 //  OOOOOOO
 // OOOOOOOOO
-
-
+const path = require("path");
 
 function drawStaircase(character, height) {
   if (!character || !height) {
@@ -25,14 +24,17 @@ function drawStaircase(character, height) {
   }
 }
 
-// Example usage:
-const args = process.argv.slice(2); // récupère les arguments en ligne de commande en ignorant les deux premiers (node et le nom du fichier)
-const character = args[0]; // le premier argument est le caractère à utiliser pour dessiner l'escalier
-const height = parseInt(args[1], 10); // le deuxième argument est la hauteur de l'escalier, que nous convertissons en entier
-drawStaircase(character, height);
+const filename = path.basename(process.argv[1]);
 
+if (filename !== "air14.js") {
+  // Example usage:
+  const args = process.argv.slice(2); // récupère les arguments en ligne de commande en ignorant les deux premiers (node et le nom du fichier)
+  const character = args[0]; // le premier argument est le caractère à utiliser pour dessiner l'escalier
+  const height = parseInt(args[1], 10); // le deuxième argument est la hauteur de l'escalier, que nous convertissons en entier
+  drawStaircase(character, height);
+}
 
 //exporter la fonction pour exo air14.js
 module.exports = {
-  "drawStaircase": drawStaircase,
+  drawStaircase: drawStaircase,
 };
