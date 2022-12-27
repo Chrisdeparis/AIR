@@ -175,13 +175,14 @@ function runTests() {
           // j'aime la guitare, le cinéma et la blockchain
           var filename = "a.txt";
           var expected;
-          result = air11.readFile(filename);
-          // var { readFile } = require("./air11");
-          // var result = readFile(filename);
-          // console.log(result);
-          console.log("result :" + result);
+          result = fs.readFile("a.txt", "utf8", (err, data) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            // console.log('result : '+data);
+          });
           expected = "j'aime la guitare, le cinéma et la blockchain";
-          console.log("expected : " + expected);
           tested = true;
           if (result === expected) {
             
