@@ -323,6 +323,9 @@ function runTests() {
             const expected = "j'aime la guitare, le cinéma et la blockchain";
 
             // Appelez la fonction de l'exercice avec les données de test
+            const result = air11.readFile(filename); //undefined
+
+            // Appelez la fonction de l'exercice avec les données de test
             const resultPromise = new Promise((resolve, reject) => {
               fs.readFile(filename, "utf8", (err, data) => {
                 if (err) {
