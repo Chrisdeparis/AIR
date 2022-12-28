@@ -123,7 +123,7 @@ function runTests() {
               // Incrémentez le compteur de réussite et le compteur de tests
               successCount++;
               testCount++;
-              console.log(testCount);
+              // console.log(testCount);
             } catch (err) {
               tested = false;
             }
