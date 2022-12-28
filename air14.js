@@ -437,11 +437,13 @@ function runTests() {
         }, delay);
       }
     }
+    // Increment the delay by 200 milliseconds
+    delay += 200;
   }
   // Display the total number of successful tests and the total number of exercises, with a delay
-      setTimeout(() => {
-        console.log(`Total success : (${successCount}/${totalExercices})`);
-      }, delay);
+  setTimeout(() => {
+    console.log(`Total success : (${successCount}/${totalExercices})`);
+  }, delay);
 }
 // Run the tests
 runTests();
