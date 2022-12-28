@@ -41,7 +41,6 @@ if( filename !== 'air14.js') {
   } else {
     console.log(resultat);
   }
-  
 }
 
 //exporter la fonction pour exo air14.js

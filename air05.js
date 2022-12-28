@@ -44,5 +44,5 @@ console.log(resultat);
 
 //exporter la fonction pour exo air14.js
 module.exports = {
-  retirerCaracteresAdjacents: retirerCaracteresAdjacents,
+  "retirerCaracteresAdjacents": retirerCaracteresAdjacents,
 };

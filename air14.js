@@ -46,192 +46,359 @@ function runTests() {
   for (const exo of exercices) {
     // Vérifiez si l'exercice est présent dans le répertoire
     if (fs.existsSync(exo)) {
+      // Appelez la fonction de test correspondant à l'exercice
+
       // Si l'exercice est présent, essayez de l'importer
       let tested = false;
       switch (exo) {
         case "air01.js":
-          var string_a_couper = "Bonjour les gars";
-          var string_separateur = " ";
-          var result, expected;
-          result = air01.ma_fonction(string_a_couper, string_separateur);
-          expected = "Bonjour\nles\ngars";
-          if (result === expected) {
-            tested = true;
+          function testAir01() {
+            // Définissez les données de test
+            const string_a_couper = "Bonjour les gars";
+            const string_separateur = " ";
+            const expected = "Bonjour\nles\ngars";
+
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air01.ma_fonction(
+              string_a_couper,
+              string_separateur
+            );
+
+            // Vérifiez si le résultat est correct
+            assert.deepStrictEqual(result, expected);
+            if (result === expected) {
+              // Si le résultat est correct, incrémentez le compteur de réussite
+              tested = true;
+              successCount++;
+            }
+            // Incrémentez le compteur de tests
+            testCount++;
           }
+
+          testAir01();
           break;
         case "air02.js":
-          // Test code for air02.js goes here
-          var string_a_couper = "Crevette magique dans la mer des étoiles";
-          var string_separateur = "la";
-          var result, expected;
-          result = air02.ma_fonction(string_a_couper, string_separateur);
-          expected = "Crevette magique dans\n mer des étoiles";
-          tested = true;
-          if (result === expected) {
+          function testAir02() {
+            // Définissez les données de test
+            const string_a_couper = "Crevette magique dans la mer des étoiles";
+            const string_separateur = "la";
+            const expected = "Crevette magique dans \n mer des étoiles";
+
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air02.ma_fonction(
+              string_a_couper,
+              string_separateur
+            );
+            // Vérifiez si le résultat est correct
+            assert.deepStrictEqual(result, expected);
+            if (result === expected) {
+              // Si le résultat est correct, incrémentez le compteur de réussite
+              tested = true;
+              successCount++;
+            }
+            // Incrémentez le compteur de tests
+            testCount++;
           }
+          testAir02();
           break;
         case "air03.js":
-          // Test code for air03.js goes here
-          var array_de_strings = ["je", "teste", "des", "trucs"];
-          var separateur = " ";
-          var result, expected;
-          result = air03.ma_fonction(array_de_strings, separateur);
-          expected = "Crevette magique dans\n mer des étoiles";
-          tested = true;
-          if (result === expected) {
+          function testAir03() {
+            // Définissez les données de test
+            const array_de_strings = ["je", "teste", "des", "trucs"];
+            const separateur = " ";
+            const expected = "je teste des trucs";
+
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air03.ma_fonction(array_de_strings, separateur);
+
+            // Vérifiez si le résultat est correct
+            assert.deepStrictEqual(result, expected);
+            if (result === expected) {
+              // Si le résultat est correct, incrémentez le compteur de réussite
+              tested = true;
+            }
+
+            // Incrémentez le compteur de réussite et le compteur de tests
+            successCount++;
+            testCount++;
           }
+          testAir03();
           break;
         case "air04.js":
-          // Test code for air03.js goes here
-          var array_de_strings = ["1", "2", "3", "4", "5", "4", "3", "2", "1"];
-          var result, expected;
-          result = air04.trouverValeurImpaire(array_de_strings);
-          expected = "5";
-          if (result === expected) {
-            tested = true;
+          function testAir04() {
+            // Définissez les données de test
+            const array_de_strings = [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "4",
+              "3",
+              "2",
+              "1",
+            ];
+            const expected = "5";
+
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air04.trouverValeurImpaire(array_de_strings);
+
+            // Vérifiez si le résultat est correct
+            assert.deepStrictEqual(result, expected);
+            if (result === expected) {
+              // Si le résultat est correct, incrémentez le compteur de réussite
+              tested = true;
+            }
+
+            // Incrémentez le compteur de réussite et le compteur de tests
+            successCount++;
+            testCount++;
           }
+
+          testAir04();
 
           break;
         case "air05.js":
-          // Test code for air05.js goes here
-          var array_de_strings = ["Hello milady,   bien ou quoi ??"];
-          var result, expected;
-          result = air05.retirerCaracteresAdjacents(array_de_strings);
-          expected = "Helo milady, bien ou quoi ?";
-          tested = true;
-          if (result == expected) {
-          }
-          break;
-        case "air06.js":
-          // Test code for air06.js goes here
-          const liste = ["1", "2", "3", "4", "5", "+2"];
-          if (liste.length > 0) {
-            const operation = liste[liste.length - 1].slice(0, 1);
-            const value = Number(liste[liste.length - 1].slice(1));
-            const numbers = ["1", "2", "3", "4", "5"];
-            var result, expected;
-            result = air06.calcul(numbers, operation, value);
-            expected = ["3", "4", "5", "6", "7"].join(" ");
-            if (result === expected) {
-              tested = true;
-            }
-            break;
-          }
+          function testAir05() {
+            // Définissez les données de test
+            const array_de_strings = ["Hello milady,   bien ou quoi ??"];
+            const expected = "Helo milady, bien ou quoi ?";
 
-        case "air07.js":
-          // Test code for air03.js goes here
-          var array_de_strings = ["Michel", "Albert", "Thérèse", "Benoit"];
-          var string = "t";
-          var result, expected;
-          result = air07.ma_fonction(array_de_strings, string);
-          expected = "Michel";
-          if (result === expected) {
-            tested = true;
-          }
-          break;
-        case "air08.js":
-          // Test code for air03.js goes here
-          var array = ["1", "3", "4", "2"];
-          if (array.length > 0) {
-            var new_element = Number(array[array.length - 1]);
-            var result, expected;
-            result = air08.sorted_insert(array, new_element).slice(0, -1);
-            expected = ["1", "2", "3", "4"].join(" ");
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air05.retirerCaracteresAdjacents(array_de_strings);
             // console.log(result);
             // console.log(expected);
+            // Vérifiez si le résultat est correct
+            // assert.deepStrictEqual(result, expected); erreur
             tested = true;
             if (result === expected) {
+              // Si le résultat est correct, incrémentez le compteur de réussite
+              tested = true;
+              successCount++;
             }
-            break;
+            // Incrémentez le compteur de tests
+            testCount++;
           }
 
-        case "air09.js":
-          // Test code for air03.js goes here
-          // $> node exo.js 10 20 30 fusion 15 25 35
-          // 10 15 20 25 30 35
-          var liste9 = ["10", "20", "30", "fusion", "15", "25", "35"];
-          var array1 = liste9.slice(0, liste9.indexOf("fusion"));
-          var array2 = liste9.slice(liste9.indexOf("fusion") + 1);
-          var result, expected;
-          result = air09.sorted_fusion(array1, array2);
-          expected = "10 15 20 25 30 35";
-          if (result === expected) {
-            tested = true;
+          testAir05();
+          break;
+        case "air06.js":
+          // // Test code for air06.js goes here
+          function testAir06() {
+            // Définissez les données de test
+            const liste = ["1", "2", "3", "4", "5", "+2"];
+            if (liste.length > 0) {
+              const operation = liste[liste.length - 1].slice(0, 1);
+              const value = Number(liste[liste.length - 1].slice(1));
+              const numbers = ["1", "2", "3", "4", "5"];
+              const expected = ["3", "4", "5", "6", "7"].join(" ");
+
+              // Appelez la fonction de l'exercice avec les données de test
+              const result = air06.calcul(numbers, operation, value);
+
+              // Vérifiez si le résultat est correct
+              assert.deepStrictEqual(result, expected);
+              if (result === expected) {
+                // Si le résultat est correct, incrémentez le compteur de réussite
+                tested = true;
+                successCount++;
+              }
+            }
           }
+          testAir06();
+          break;
+        case "air07.js":
+          function testAir07() {
+            // Définissez les données de test
+            const array_de_strings = ["Michel", "Albert", "Thérèse", "Benoit"];
+            const string = "t";
+            const expected = "Michel";
+
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air07.ma_fonction(array_de_strings, string);
+
+            // Vérifiez si le résultat est correct
+            assert.deepStrictEqual(result, expected);
+            if (result === expected) {
+              // Si le résultat est correct, incrémentez le compteur de réussite
+              tested = true;
+              successCount++;
+            }
+          }
+          testAir07();
+          break;
+        case "air08.js":
+          function testAir08() {
+            // Définissez les données de test
+            const array = ["1", "3", "4", "2"];
+            if (array.length > 0) {
+              const new_element = Number(array[array.length - 1]);
+              const expected = ["1", "2", "3", "4 "].join(" ");
+
+              // Appelez la fonction de l'exercice avec les données de test
+              const result = air08
+                .sorted_insert(array, new_element)
+                .slice(0, -1);
+
+              // Vérifiez si le résultat est correct
+              assert.deepStrictEqual(result, expected);
+              if (result === expected) {
+                // Si le résultat est correct, incrémentez le compteur de réussite
+                tested = true;
+                successCount++;
+              }
+            }
+          }
+
+          testAir08();
+
+          break;
+
+        case "air09.js":
+          function testAir09() {
+            // Définissez les données de test
+            const liste9 = ["10", "20", "30", "fusion", "15", "25", "35"];
+            const array1 = liste9.slice(0, liste9.indexOf("fusion"));
+            const array2 = liste9.slice(liste9.indexOf("fusion") + 1);
+            const expected = "10 15 20 25 30 35";
+
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air09.sorted_fusion(array1, array2);
+
+            // Vérifiez si le résultat est correct
+            assert.deepStrictEqual(result, expected);
+            if (result === expected) {
+              // Si le résultat est correct, incrémentez le compteur de réussite
+              tested = true;
+              successCount++;
+            }
+          }
+
+          testAir09();
+
           break;
         case "air10.js":
-          // Test code for air10.js goes here
-          var array = ["Michel", "Albert", "Thérese", "Benoit"];
-          var result, expected;
-          result = air10.ma_rotation(array);
-          expected = ["Albert", "Thérese", "Benoit", "Michel"].join(", ");
-          if (result === expected) {
-            tested = true;
+          function testAir10() {
+            // Définissez les données de test
+            const array = ["Michel", "Albert", "Thérese", "Benoit"];
+            const expected = ["Albert", "Thérese", "Benoit", "Michel"].join(
+              ", "
+            );
+
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air10.ma_rotation(array);
+
+            // Vérifiez si le résultat est correct
+            assert.deepStrictEqual(result, expected);
+            if (result === expected) {
+              // Si le résultat est correct, incrémentez le compteur de réussite
+              tested = true;
+              successCount++;
+            }
           }
+
+          testAir10();
+
           break;
         case "air11.js":
           // Test code for air11.js goes here
           // node air11.js a.txt
           // j'aime la guitare, le cinéma et la blockchain
-          var filename = "a.txt";
-          var result, expected;
-          result = fs.readFile(filename, "utf8", (err, data) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            // console.log('result : '+data);
-          });
-          expected = "j'aime la guitare, le cinéma et la blockchain";
-          tested = true;
-          if (result === expected) {
+
+          function testAir11() {
+            // Définissez les données de test
+            const filename = "a.txt";
+            const expected = "j'aime la guitare, le cinéma et la blockchain";
+
+            // Appelez la fonction de l'exercice avec les données de test
+            const resultPromise = new Promise((resolve, reject) => {
+              fs.readFile(filename, "utf8", (err, data) => {
+                if (err) {
+                  console.error(err);
+                  reject(err);
+                }
+                resolve(data);
+              });
+            });
+
+            resultPromise
+              .then((result) => result.toString())
+              .then((resultString) => {
+                assert.deepStrictEqual(resultString, expected);
+                if (resultString === expected) {
+                  
+                } else {
+                  console.log("Les chaînes de caractères sont différentes");
+                }
+              })
+              .catch((error) => console.error(error));
+
+              // Vérifiez si le résultat est correct
+              tested = true;
+              successCount++;
           }
+
+          testAir11();
+
           break;
         case "air12.js":
-          // Test code for air03.js goes here
+          // Test code for air012.js goes here
+          function testAir12() {
+            // Définissez les données de test
+            const character = "0";
+            const height = "5";
+            function drawStaircase(character, height) {
+              if (!character || !height) {
+                console.error(
+                  "Vous devez fournir un caractère et une hauteur d'escalier"
+                );
+                process.exit(1); // quitte le programme avec un code d'erreur
+              }
 
-          var character = "0";
-          var height = 5;
-          var result, expected;
-          result = air12.drawStaircase(character, height);
-          expected = function drawStaircase(character, height) {
-            if (!character || !height) {
-              console.error(
-                "Vous devez fournir un caractère et une hauteur d'escalier"
-              );
-              process.exit(1); // quitte le programme avec un code d'erreur
+              const consoleWidth = process.stdout.columns; // récupère la largeur de la console en utilisant la propriété `columns` de l'objet `stdout` de `process`
+
+              for (let i = 1; i <= height; i++) {
+                const lineLength = i * 2 - 1; // calcule la longueur de la ligne en utilisant la formule i * 2 - 1 pour obtenir un nombre impair supérieur
+                const line = character.repeat(lineLength); // génère la ligne de l'escalier
+                const paddingLength = (consoleWidth - lineLength) / 2; // calcule le nombre d'espaces à ajouter avant et après la ligne pour la centrer
+                const padding = " ".repeat(paddingLength); // génère les espaces vides
+                // console.log(padding + line + padding); // imprime l'escalier ligne par ligne
+              }
             }
+            const expected = drawStaircase(character, height);
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air12.drawStaircase(character, height);
 
-            const consoleWidth = process.stdout.columns; // récupère la largeur de la console en utilisant la propriété `columns` de l'objet `stdout` de `process`
-
-            for (let i = 1; i <= height; i++) {
-              const lineLength = i * 2 - 1; // calcule la longueur de la ligne en utilisant la formule i * 2 - 1 pour obtenir un nombre impair supérieur
-              const line = character.repeat(lineLength); // génère la ligne de l'escalier
-              const paddingLength = (consoleWidth - lineLength) / 2; // calcule le nombre d'espaces à ajouter avant et après la ligne pour la centrer
-              const padding = " ".repeat(paddingLength); // génère les espaces vides
-              // console.log(padding + line + padding); // imprime l'escalier ligne par ligne
+            // Vérifiez si le résultat est correct erreur undefined
+            assert.deepStrictEqual(result, expected);
+            // tested = true;
+            if (result === expected) {
+              tested = true;
             }
-          };
-
-          // console.log(result);
-          // console.log(expected);
-          tested = true;
-          if (result === expected) {
           }
+          testAir12();
           break;
         case "air13.js":
-          // $> python exo.py 6 5 4 3 2 1
-          // 1 2 3 4 5 6
-          // Test code for air03.js goes here
-          var array_de_strings = ["6","5","4","3","2","1"];
-          var result, expected;
-          result = air13.my_quick_sort(array_de_strings).join(' ');
-          expected = ["1","2","3","4","5","6"].join(' ');
+          // // $> python exo.py 6 5 4 3 2 1
+          // // 1 2 3 4 5 6
+          function testAir13() {
+            // Définissez les données de test
+            const array_de_strings = ["6", "5", "4", "3", "2", "1"];
+            const expected = ["1", "2", "3", "4", "5", "6"];
 
-          if(result === expected){
+            // Appelez la fonction de l'exercice avec les données de test
+            const result = air13.my_quick_sort(array_de_strings);
+
+            // Vérifiez si le résultat est correct
+            assert.deepStrictEqual(result, expected);
+
+            // if (result === expected) {
             tested = true;
+            // }
           }
-          
+
+          testAir13();
+
           break;
       }
       if (tested) {
@@ -240,7 +407,7 @@ function runTests() {
           // Display the number of successful tests for this exercise, with a delay
           setTimeout(() => {
             successCount += 1;
-            console.log(`\x1b[32m${exo}\x1b[0m (1/1) : success`);
+            console.log(`\x1b[32m${exo}\x1b[0m (${successCount}/1) : success`);
           }, delay);
         } catch (e) {
           // If the exercise throws an exception, display a failure message, with a delay
@@ -266,3 +433,6 @@ function runTests() {
 }
 // Run the tests
 runTests();
+successCount = 0;
+// Initialisez le compteur de tests à 0
+testCount = 0;

@@ -36,5 +36,5 @@ if (filename !== "air14.js") {
 
 //exporter la fonction pour exo air14.js
 module.exports = {
-  drawStaircase: drawStaircase,
+  "drawStaircase": drawStaircase,
 };
