@@ -65,18 +65,16 @@ function runTests() {
             );
 
             // Vérifiez si le résultat est correct
-            try{
+            try {
               assert.deepStrictEqual(result, expected);
               tested = true;
               successCount++;
-              
+
               // Incrémentez le compteur de tests
               testCount++;
-
-            } catch(err){
+            } catch (err) {
               tested = false;
             }
-
           }
 
           testAir01();
@@ -316,39 +314,45 @@ function runTests() {
           // Test code for air11.js goes here
           // node air11.js a.txt
           // j'aime la guitare, le cinéma et la blockchain
-
+          global.tested = false;
           function testAir11() {
             // Définissez les données de test
             const filename = "a.txt";
             const expected = "j'aime la guitare, le cinéma et la blockchain";
 
             // Appelez la fonction de l'exercice avec les données de test
-            const result = air11.readFile(filename); //undefined
-
-            // Appelez la fonction de l'exercice avec les données de test
-            const resultPromise = new Promise((resolve, reject) => {
-              fs.readFile(filename, "utf8", (err, data) => {
-                if (err) {
-                  console.error(err);
-                  reject(err);
-                }
-                resolve(data);
-              });
-            });
-
-            resultPromise
-              .then((result) => result.toString())
-              .then((resultString) => {
-                // verifie si erreur entre resultString et expected
-                try {
-                  assert.deepStrictEqual(resultString, expected);
-                  tested = true;
-                } catch (err) {
-                  tested = false;
-                }
+            async function readFile(filename) {
+              return new Promise((resolve, reject) => {
+                fs.readFile(filename, "utf8", (err, data) => {
+                  if (err) {
+                    console.error(err);
+                    reject(err);
+                  }
+                  resolve(data);
+                });
               })
-              .catch((error) => console.error(error));
-            tested = true;
+                .then((result) => result.toString())
+                .then((resultString) => {
+                  // verifie si erreur entre resultString et expected
+                  try {
+                    assert.deepStrictEqual(resultString, expected);
+                    tested = true;
+                    global.tested = true;
+                    // console.log(tested);
+                    // console.log(resultString);
+                    // console.log(expected);
+                  } catch (err) {
+                    console.error("La comparaison a échoué : ", err);
+                    global.tested = false;
+                  }
+                })
+                .catch((error) => console.error(error));
+            }
+
+            const result = readFile(filename); //undefined
+
+            // console.log(result);
+            // Appelez la fonction de l'exercice avec les données de test
           }
 
           testAir11();
@@ -414,36 +418,30 @@ function runTests() {
           testAir13();
           break;
       }
-      if (tested) {
-        try {
-          // Insérez ici le code pour importer l'exercice
-          // Display the number of successful tests for this exercise, with a delay
-          setTimeout(() => {
-            testCount = 1;
-            successCount += 1;
-            console.log(`\x1b[32m${exo}\x1b[0m (${successCount}/${testCount}) : success`);
-          }, delay);
-        } catch (e) {
-          // If the exercise throws an exception, display a failure message, with a delay
-          setTimeout(() => {
-            console.log(`\x1b[31m${exo}\x1b[0m : failure`);
-          }, delay);
-        }
-      } else {
-        console.log(`\x1b[31m${exo}\x1b[0m (0/1) : failure`);
-      }
-    } else {
-      // Si l'exercice n'est pas présent, affichez un message d'échec
-      console.log(`\x1b[31m${exo}\x1b[0m : failure`);
-    }
-    // Increment the delay by 200 milliseconds
-    delay += 200;
-  }
 
+      try {
+        // Insérez ici le code pour importer l'exercice
+        // Display the number of successful tests for this exercise, with a delay
+        setTimeout(() => {
+          testCount = 1;
+          successCount += 1;
+          console.log(
+            `\x1b[32m${exo}\x1b[0m (${successCount}/${testCount}) : success`
+          );
+        }, delay);
+      } catch (e) {
+        // If the exercise throws an exception, display a failure message, with a delay
+        setTimeout(() => {
+          // console.log(e);
+          console.log(`\x1b[31m${exo}\x1b[0m : failure`);
+        }, delay);
+      }
+    }
+  }
   // Display the total number of successful tests and the total number of exercises, with a delay
-  setTimeout(() => {
-    console.log(`Total success : (${successCount}/${totalExercices})`);
-  }, delay);
+      setTimeout(() => {
+        console.log(`Total success : (${successCount}/${totalExercices})`);
+      }, delay);
 }
 // Run the tests
 runTests();
