@@ -65,14 +65,18 @@ function runTests() {
             );
 
             // Vérifiez si le résultat est correct
-            assert.deepStrictEqual(result, expected);
-            if (result === expected) {
-              // Si le résultat est correct, incrémentez le compteur de réussite
+            try{
+              assert.deepStrictEqual(result, expected);
               tested = true;
               successCount++;
+              
+              // Incrémentez le compteur de tests
+              testCount++;
+
+            } catch(err){
+              tested = false;
             }
-            // Incrémentez le compteur de tests
-            testCount++;
+
           }
 
           testAir01();
@@ -112,15 +116,17 @@ function runTests() {
             const result = air03.ma_fonction(array_de_strings, separateur);
 
             // Vérifiez si le résultat est correct
-            assert.deepStrictEqual(result, expected);
-            if (result === expected) {
-              // Si le résultat est correct, incrémentez le compteur de réussite
+            try {
+              assert.deepStrictEqual(result, expected);
               tested = true;
-            }
 
-            // Incrémentez le compteur de réussite et le compteur de tests
-            successCount++;
-            testCount++;
+              // Incrémentez le compteur de réussite et le compteur de tests
+              successCount++;
+              testCount++;
+              console.log(testCount);
+            } catch (err) {
+              tested = false;
+            }
           }
           testAir03();
           break;
@@ -144,38 +150,39 @@ function runTests() {
             const result = air04.trouverValeurImpaire(array_de_strings);
 
             // Vérifiez si le résultat est correct
-            assert.deepStrictEqual(result, expected);
-            if (result === expected) {
-              // Si le résultat est correct, incrémentez le compteur de réussite
+            try {
+              assert.deepStrictEqual(result, expected);
               tested = true;
+              // Incrémentez le compteur de réussite et le compteur de tests
+              successCount++;
+              testCount++;
+            } catch (err) {
+              tested = false;
             }
-
-            // Incrémentez le compteur de réussite et le compteur de tests
-            successCount++;
-            testCount++;
           }
-
           testAir04();
 
           break;
         case "air05.js":
           function testAir05() {
             // Définissez les données de test
-            const array_de_strings = ["Hello milady,   bien ou quoi ??"];
+            const array_de_strings = [
+              "Hello milady,   bien ou quoi ??",
+            ].toString();
             const expected = "Helo milady, bien ou quoi ?";
 
             // Appelez la fonction de l'exercice avec les données de test
             const result = air05.retirerCaracteresAdjacents(array_de_strings);
-            // console.log(result);
-            // console.log(expected);
+
             // Vérifiez si le résultat est correct
-            // assert.deepStrictEqual(result, expected); erreur
-            tested = true;
-            if (result === expected) {
-              // Si le résultat est correct, incrémentez le compteur de réussite
+            try {
+              assert.deepStrictEqual(result, expected); //erreur
               tested = true;
               successCount++;
+            } catch (err) {
+              tested = false;
             }
+
             // Incrémentez le compteur de tests
             testCount++;
           }
@@ -197,11 +204,12 @@ function runTests() {
               const result = air06.calcul(numbers, operation, value);
 
               // Vérifiez si le résultat est correct
-              assert.deepStrictEqual(result, expected);
-              if (result === expected) {
-                // Si le résultat est correct, incrémentez le compteur de réussite
+              try {
+                assert.deepStrictEqual(result, expected);
                 tested = true;
                 successCount++;
+              } catch (err) {
+                tested = false;
               }
             }
           }
@@ -218,11 +226,12 @@ function runTests() {
             const result = air07.ma_fonction(array_de_strings, string);
 
             // Vérifiez si le résultat est correct
-            assert.deepStrictEqual(result, expected);
-            if (result === expected) {
-              // Si le résultat est correct, incrémentez le compteur de réussite
+            try {
+              assert.deepStrictEqual(result, expected);
               tested = true;
               successCount++;
+            } catch (err) {
+              tested = false;
             }
           }
           testAir07();
@@ -241,11 +250,12 @@ function runTests() {
                 .slice(0, -1);
 
               // Vérifiez si le résultat est correct
-              assert.deepStrictEqual(result, expected);
-              if (result === expected) {
-                // Si le résultat est correct, incrémentez le compteur de réussite
+              try {
+                assert.deepStrictEqual(result, expected);
                 tested = true;
                 successCount++;
+              } catch (err) {
+                tested = false;
               }
             }
           }
@@ -266,11 +276,12 @@ function runTests() {
             const result = air09.sorted_fusion(array1, array2);
 
             // Vérifiez si le résultat est correct
-            assert.deepStrictEqual(result, expected);
-            if (result === expected) {
-              // Si le résultat est correct, incrémentez le compteur de réussite
+            try {
+              assert.deepStrictEqual(result, expected);
               tested = true;
               successCount++;
+            } catch (err) {
+              tested = false;
             }
           }
 
@@ -289,11 +300,12 @@ function runTests() {
             const result = air10.ma_rotation(array);
 
             // Vérifiez si le résultat est correct
-            assert.deepStrictEqual(result, expected);
-            if (result === expected) {
-              // Si le résultat est correct, incrémentez le compteur de réussite
+            try {
+              assert.deepStrictEqual(result, expected);
               tested = true;
               successCount++;
+            } catch (err) {
+              tested = false;
             }
           }
 
@@ -324,18 +336,16 @@ function runTests() {
             resultPromise
               .then((result) => result.toString())
               .then((resultString) => {
-                assert.deepStrictEqual(resultString, expected);
-                if (resultString === expected) {
-                  
-                } else {
-                  console.log("Les chaînes de caractères sont différentes");
+                // verifie si erreur entre resultString et expected
+                try {
+                  assert.deepStrictEqual(resultString, expected);
+                  tested = true;
+                } catch (err) {
+                  tested = false;
                 }
               })
               .catch((error) => console.error(error));
-
-              // Vérifiez si le résultat est correct
-              tested = true;
-              successCount++;
+            tested = true;
           }
 
           testAir11();
@@ -369,11 +379,12 @@ function runTests() {
             // Appelez la fonction de l'exercice avec les données de test
             const result = air12.drawStaircase(character, height);
 
-            // Vérifiez si le résultat est correct erreur undefined
-            assert.deepStrictEqual(result, expected);
-            // tested = true;
-            if (result === expected) {
+            // Vérifiez si le résultat est correct
+            try {
+              assert.deepStrictEqual(result, expected);
               tested = true;
+            } catch (err) {
+              tested = false;
             }
           }
           testAir12();
@@ -390,15 +401,14 @@ function runTests() {
             const result = air13.my_quick_sort(array_de_strings);
 
             // Vérifiez si le résultat est correct
-            assert.deepStrictEqual(result, expected);
-
-            // if (result === expected) {
-            tested = true;
-            // }
+            try {
+              assert.deepStrictEqual(result, expected);
+              tested = true;
+            } catch (err) {
+              tested = false;
+            }
           }
-
           testAir13();
-
           break;
       }
       if (tested) {
@@ -406,8 +416,9 @@ function runTests() {
           // Insérez ici le code pour importer l'exercice
           // Display the number of successful tests for this exercise, with a delay
           setTimeout(() => {
+            testCount = 1;
             successCount += 1;
-            console.log(`\x1b[32m${exo}\x1b[0m (${successCount}/1) : success`);
+            console.log(`\x1b[32m${exo}\x1b[0m (${successCount}/${testCount}) : success`);
           }, delay);
         } catch (e) {
           // If the exercise throws an exception, display a failure message, with a delay
@@ -422,8 +433,8 @@ function runTests() {
       // Si l'exercice n'est pas présent, affichez un message d'échec
       console.log(`\x1b[31m${exo}\x1b[0m : failure`);
     }
-    // Increment the delay by 1000 milliseconds (1 second)
-    delay += 1000;
+    // Increment the delay by 200 milliseconds
+    delay += 200;
   }
 
   // Display the total number of successful tests and the total number of exercises, with a delay
