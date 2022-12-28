@@ -49,7 +49,7 @@ const filename = path.basename(process.argv[1]);
 // On vérifie si aucun argument n'a été passé
 // empecher le message d'erreur si appel par air14.js
 if (filename !== 'air14.js'){
-  if (!array_de_strings.length || !separateur || filename === 'air03.js') {
+  if (!array_de_strings.length || !separateur ) {
     console.log("Error: aucun argument n'a été passé au programme");
     return;
   }
